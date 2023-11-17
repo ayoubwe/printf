@@ -5,6 +5,7 @@ void print_buffer(char buffer[], int *buff_ind);
 /**
  * _printf - printf fnct.
  * @format: const char
+ * @...: char
  * Return: printed char
  */
 int _printf(const char *format, ...)
@@ -55,6 +56,7 @@ int _printf(const char *format, ...)
  * print_buffer - print buffer
  * @buffer: string
  * @buff_ind: int
+ * Return:nothing
  */
 void print_buffer(char buffer[], int *buff_ind)
 {
