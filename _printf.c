@@ -1,14 +1,13 @@
 #include "main.h"
 
-void print_buffer(char buffer[], int *buffer_ind);
+void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - print a function
- * @format: frormat.
- * Return: chars.
+ * _printf - Printf function
+ * @format: format.
+ * Return: Printed chars.
  */
-
-int _printf(const char *fromat, ...)
+int _printf(const char *format, ...)
 {
 	int i, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
@@ -18,16 +17,18 @@ int _printf(const char *fromat, ...)
 	if (format == NULL)
 		return (-1);
 
-	va_start(list, fromat);
+	va_start(list, format);
 
-	for (i = 0, format && format[i] != '\0'; i++)
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
-	{
-		buffer[buff_ind++] = format[i];
-		if (buff_ind == BUFF_SIZE)
-			printf_buffer(buffer, &buff_ind);
-	}
+		{
+			buffer[buff_ind++] = format[i];
+			if (buff_ind == BUFF_SIZE)
+				print_buffer(buffer, &buff_ind);
+			/* write(1, &format[i], 1);*/
+			printed_chars++;
+		}
 		else
 		{
 			print_buffer(buffer, &buff_ind);
@@ -36,8 +37,9 @@ int _printf(const char *fromat, ...)
 			precision = get_precision(format, &i, list);
 			size = get_size(format, &i);
 			++i;
-			printed = handle_print(format, &i, list, buffer, flags, width, precision, size);
-			if (printd == -1)
+			printed = handle_print(format, &i, list, buffer,
+				flags, width, precision, size);
+			if (printed == -1)
 				return (-1);
 			printed_chars += printed;
 		}
@@ -49,10 +51,11 @@ int _printf(const char *fromat, ...)
 
 	return (printed_chars);
 }
+
 /**
- * print_buffer - the contents of buffer
- * @buffer: char.
- * @buff_ind: string.
+ * print_buffer - print buffer
+ * @buffer: string
+ * @buff_ind: int
  */
 void print_buffer(char buffer[], int *buff_ind)
 {
@@ -61,3 +64,4 @@ void print_buffer(char buffer[], int *buff_ind)
 
 	*buff_ind = 0;
 }
+
