@@ -1,6 +1,6 @@
 #include "main.h"
 
-/************************* WRITE HANDLE *************************/
+/** WRITE HANDLE **/
 /**
  * handle_write_char - Prints a string
  * @c: char types.
@@ -10,7 +10,7 @@
  * @precision: precision specifier
  * @size: Size specifier
  *
- * Return: Number of chars printed.
+ * Return: Number of characters printed.
  */
 int handle_write_char(char c, char buffer[],
 	int flags, int width, int precision, int size)
@@ -44,18 +44,18 @@ int handle_write_char(char c, char buffer[],
 	return (write(1, &buffer[0], 1));
 }
 
-/************************* WRITE NUMBER *************************/
+/** WRITE NUMBER **/
 /**
  * write_number - Prints a string
- * @is_negative: Lista of arguments
- * @ind: char types.
+ * @is_negative: List of args
+ * @ind: characters types.
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
  * @precision: precision specifier
  * @size: Size specifier
  *
- * Return: Number of chars printed.
+ * Return: Number of characters printed.
  */
 int write_number(int is_negative, int ind, char buffer[],
 	int flags, int width, int precision, int size)
@@ -86,10 +86,10 @@ int write_number(int is_negative, int ind, char buffer[],
  * @width: width
  * @prec: Precision specifier
  * @length: Number length
- * @padd: Pading char
- * @extra_c: Extra char
+ * @padd: Pading character
+ * @extra_c: Extra character
  *
- * Return: Number of printed chars.
+ * Return: Number of printed charcters.
  */
 int write_num(int ind, char buffer[],
 	int flags, int width, int prec,
@@ -141,13 +141,13 @@ int write_num(int ind, char buffer[],
  * write_unsgnd - Writes an unsigned number
  * @is_negative: Number indicating if the num is negative
  * @ind: Index at which the number starts in the buffer
- * @buffer: Array of chars
+ * @buffer: Array of charcters
  * @flags: Flags specifiers
  * @width: Width specifier
  * @precision: Precision specifier
  * @size: Size specifier
  *
- * Return: Number of written chars.
+ * Return: Number of written charcters.
  */
 int write_unsgnd(int is_negative, int ind,
 	char buffer[],
@@ -203,10 +203,10 @@ int write_unsgnd(int is_negative, int ind,
  * @width: Wwidth specifier
  * @flags: Flags specifier
  * @padd: Char representing the padding
- * @extra_c: Char representing extra char
+ * @extra_c: Char representing extra character
  * @padd_start: Index at which padding should start
  *
- * Return: Number of written chars.
+ * Return: Number of written charcters.
  */
 int write_pointer(char buffer[], int ind, int length,
 	int width, int flags, char padd, char extra_c, int padd_start)
