@@ -1,54 +1,49 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
 
-int _printf(const char *format, ...);
-{
-	int char_print = 0;
-	va_list list_of_args;
+int _printf(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
 
-	if (format == NULL)
-		return (-1);
+    for (int i = 0; format[i] != '\0'; i++) {
+        if (format[i] != '%') {
+            putchar(format[i]);
+            count++;
+        } else {
+            i++; // skip '%'
+            char c = va_arg(args, int);
+            switch (format[i]) {
+                case 'c':
+                    putchar(c);
+                    count++;
+                    break;
+                case 's':
+                    {
+                        char *s = va_arg(args, char *);
+                        while (*s != '\0') {
+                            putchar(*s);
+                            s++;
+                            count++;
+                        }
+                    }
+                    break;
+                case '%':
+                    putchar('%');
+                    count++;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
-	va_start(list_of_args, format);
+    va_end(args);
+    return count;
+}
 
-	while (*format)
-	{
-		if (*format != '%')
-		{
-			write(1, format, 1)
-			char_print++;
-		}
-		else
-		{
-			format++; /**skip the '%' character and check the next character*/
-			if (format == '\0')
-				break;
-			if (*format == '%') /** handles the double '%' case*/
-			{
-				write(1, format, 1);
-				char_print++;
-			}
-			else if (*format == 'c')
-			{
-				char c = va_arg(list_of_args, int);
-
-				write(1, &c, 1);
-				char_print++;
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(list_of_args, char*);
-				int str_len = 0;
-
-				while (str[str_len] != '\0') /** cialculates the length of the string*/
-					str_len++;
-
-				write(1, str, str_len); /** writes the string to the standard output*/
-				char_print += str_len;
-			}
-		}
-		format++;
-	}
-	va_end(list_of_args)
-
-	return (char_print);
+int main() {
+    _printf("Hello, World! %c%c%c\n", 'A', 'B', 'C');
+    _printf("Sum: %d + %d = %d\n", 1, 2, 1 + 2);
+    return 0;
 }
