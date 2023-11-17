@@ -2,7 +2,7 @@
 
 
 /**
- * print_char - Prints a char
+ * print_char - string print
  * @types: va list
  * @buffer: string
  * @flags:  int
@@ -181,4 +181,3 @@ int print_binary(va_list types, char buffer[],
 	}
 	return (count);
 }
-
